@@ -1,7 +1,7 @@
 # orangehrm-automation-framework
 
-OrangeHRMDemoAutomation is a basic test automation framework developed to understand the core concepts of web automation and testing. It is designed to demonstrate how Java, Selenium WebDriver, TestNG, and Cucumber can be integrated to perform end-to-end testing of a web application.
-This project follows the Page Object Model (POM) design pattern to ensure code reusability and maintainability. It also includes essential features such as detailed reporting, logging, and configuration management, making it a great starting point for beginners who want to understand automation frameworks are structured.
+orangehrm-automation-framework is a basic test automation framework developed to understand the core concepts of web automation and testing. It is designed to demonstrate how Java, Selenium WebDriver, TestNG, and Cucumber can be integrated to perform end-to-end testing of a web application.
+This project follows the Page Object Model (POM) design pattern to ensure code reusability and maintainability. It also includes essential features such as detailed reporting, logging, and configuration management, making it a great starting point for beginners who want to understand how automation frameworks are structured.
 
 🛠️ Tech Stack
 •	Java
