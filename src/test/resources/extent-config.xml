@@ -1,0 +1,26 @@
+<configuration>
+    <!-- Theme of the report: standard or dark -->
+    <theme>standard</theme> <!-- or dark -->
+
+    <!-- Encoding type -->
+    <encoding>utf-8</encoding>
+
+    <!-- Title of the report (HTML title tag) -->
+    <documentTitle>Automation Test Report</documentTitle>
+
+    <!-- Report name shown on the report UI -->
+    <reportName>OrangeHRM Initial Test Suite</reportName>
+
+    <!-- Timeline view (true to show timeline chart) -->
+    <timelineEnabled>true</timelineEnabled>
+
+    <!-- Custom CSS (optional) -->
+    <!-- <styles>
+        body { font-family: 'Segoe UI', sans-serif; }
+    </styles> -->
+
+    <!-- Custom JavaScript (optional) -->
+    <!-- <scripts>
+        console.log('Custom Extent Report Loaded');
+    </scripts> -->
+</configuration>
