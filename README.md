@@ -12,5 +12,5 @@ This project follows the Page Object Model (POM) design pattern to ensure code r
 •	ExtentReports
 •	Log4j2
 
-📁 Project Structure4
+📁 Project Structure
 ![image](https://github.com/user-attachments/assets/14f61d10-900f-4f0d-bf38-6640882979de)
