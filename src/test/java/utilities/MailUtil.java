@@ -9,13 +9,13 @@ import java.io.File;
 
 public class MailUtil {
     public static void sendExtentReport() {
-        final String username = "mehvish.ms67@gmail.com"; // your Gmail
-        final String password = "doii fwuj evbe unct";    // Gmail app password
+        final String username = "your_email@gmail.com";
+        final String password = "xxxx xxxx xxxx xxxx"; // use the App Password here
 
-        String toEmails = "vangalasairohith@gmail.com";
-        String ccEmails = "mehvishshaikh1112@gmail.com";
+        String toEmails = "toEmails@gmail.com";
+        String ccEmails = "ccEmails@gmail.com";
         String subject = "Automation Test Report";
-        String bodyText = "Hi Team,\n\nPlease find attached the latest automation test execution report.\n\nRegards,\nMehvish Shaikh";
+        String bodyText = "Hi Team,\n\nPlease find attached the latest automation test execution report.\n\nRegards,\nQA Team";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
