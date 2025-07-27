@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import utilities.ExtentManager;
+import utilities.MailUtil;
 import utilities.TestBase;
 
 import java.io.File;
@@ -71,5 +72,6 @@ public class Hooks extends TestBase {
     @AfterAll
     public static void afterAll() {
         driver.quit(); // Quit only once after all scenarios
+        MailUtil.sendExtentReport();
     }
 }
