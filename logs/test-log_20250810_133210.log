@@ -1,0 +1,6 @@
+2025-08-10 13:32:10 INFO  utilities.Log - URL Launched successfully
+2025-08-10 13:32:11 INFO  utilities.Log - Login button clicked successfully
+2025-08-10 13:32:12 INFO  utilities.Log - Page title verified successfully: OrangeHRM
+2025-08-10 13:32:13 INFO  utilities.Log - Login was successful
+2025-08-10 13:32:15 INFO  utilities.Log - Admin section clicked successfully
+2025-08-10 13:32:15 INFO  utilities.Log - Admin section and User Management text displayed status: true, true

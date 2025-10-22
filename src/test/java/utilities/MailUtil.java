@@ -8,12 +8,17 @@ import java.util.*;
 import java.io.File;
 
 public class MailUtil {
-    public static void sendExtentReport() {
-        final String username = "your_email@gmail.com";
-        final String password = "xxxx xxxx xxxx xxxx"; // use the App Password here
 
-        String toEmails = "toEmails@gmail.com";
-        String ccEmails = "ccEmails@gmail.com";
+    public static void main(String[] args) {
+        sendExtentReport();  // This enables GitHub Actions to call this via exec-maven-plugin
+    }
+
+    public static void sendExtentReport() {
+        final String username = System.getenv("EMAIL_USERNAME");
+        final String password = System.getenv("EMAIL_PASSWORD");
+        String toEmails = System.getenv("TO_EMAIL");
+        String ccEmails = System.getenv("CC_EMAIL");
+
         String subject = "Automation Test Report";
         String bodyText = "Hi Team,\n\nPlease find attached the latest automation test execution report.\n\nRegards,\nQA Team";
 
@@ -48,27 +53,34 @@ public class MailUtil {
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
 
-            // Attach the HTML report
-            MimeBodyPart attachmentPart = new MimeBodyPart();
-            //String reportPath = "target/ExtentReports/extent-report.html"; // adjust if filename differs
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String reportPath = "target/ExtentReports/ExtentReport_" + timestamp + ".html";
-            File reportFile = new File(reportPath);
+            // ✅ Find the most recently modified "ExtentReport_*.html" file
+            File reportDir = new File("target/ExtentReports");
+            File[] reports = reportDir.listFiles((dir, name) ->
+                    name.toLowerCase().endsWith(".html") && name.startsWith("ExtentReport_")
+            );
 
-            if (reportFile.exists()) {
-                DataSource source = new FileDataSource(reportFile);
-                attachmentPart.setDataHandler(new DataHandler(source));
-                attachmentPart.setFileName(reportFile.getName());
-                multipart.addBodyPart(attachmentPart);
-                message.setContent(multipart);
-                Transport.send(message);
-                System.out.println("Email sent with report!");
-            } else {
-                System.err.println("Report file not found at: " + reportPath);
+            if (reports == null || reports.length == 0) {
+                System.err.println("❌ No suitable report files found in: " + reportDir.getAbsolutePath());
+                return;
             }
 
-        } catch (MessagingException e) {
+            Arrays.sort(reports, Comparator.comparingLong(File::lastModified).reversed());
+            File latestReport = reports[0];
+
+            MimeBodyPart attachmentPart = new MimeBodyPart();
+            DataSource source = new FileDataSource(latestReport);
+            attachmentPart.setDataHandler(new DataHandler(source));
+            attachmentPart.setFileName(latestReport.getName());
+
+            multipart.addBodyPart(attachmentPart);
+            message.setContent(multipart);
+
+            Transport.send(message);
+            System.out.println("✅ Email sent with latest report: " + latestReport.getName());
+
+        } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("❌ Failed to send email.");
         }
     }
 }

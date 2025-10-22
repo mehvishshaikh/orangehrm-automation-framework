@@ -2,8 +2,12 @@ stepDefinitions\LoginStepDef.class
 utilities\ExtentManager.class
 utilities\Log.class
 pageObjects\AdminPageObjects.class
+utilities\MailUtil.class
 stepDefinitions\Hooks.class
+utilities\MailUtil2$1.class
+utilities\MailUtil2.class
 utilities\TestBase.class
+utilities\MailUtil$1.class
 utilities\TestUtil.class
 pageObjects\LoginPageObjects.class
 runner\TestRunner.class
