@@ -2,8 +2,8 @@ name: Run Tests and Email Report
 
 on:
   workflow_dispatch:  # manual trigger
-  schedule:
-    - cron: '*/2 * * * *'  # every 2 mins — disable later
+#   schedule:
+#     - cron: '*/2 * * * *'  # every 2 mins — disable later
 
 jobs:
   test-and-email:
