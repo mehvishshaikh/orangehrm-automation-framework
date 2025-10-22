@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestBase {
@@ -32,6 +33,22 @@ public class TestBase {
 		String browserName = prop.getProperty("browser");
 		
 		if(browserName.equalsIgnoreCase("chrome")) {
+
+			ChromeOptions options = new ChromeOptions();
+
+			// Add GitHub Actions compatible settings
+			if (System.getenv("GITHUB_ACTIONS") != null) {
+				System.out.println("⚙ Running in GitHub Actions - enabling headless mode");
+				options.addArguments("--headless");
+				options.addArguments("--no-sandbox");
+				options.addArguments("--disable-dev-shm-usage");
+				options.addArguments("--remote-allow-origins=*");
+				options.addArguments("--disable-gpu");
+				options.addArguments("--disable-extensions");
+				options.addArguments("--window-size=1920,1080");
+				options.addArguments("--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis());
+			}
+
 			driver = new ChromeDriver();
 		}
 		
