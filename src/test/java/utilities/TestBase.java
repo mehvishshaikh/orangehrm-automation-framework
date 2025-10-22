@@ -16,16 +16,16 @@ public class TestBase {
 	public static Properties prop;
 	
 	public TestBase() {
-		try (InputStream input = getClass().getClassLoader()
-				.getResourceAsStream("configurationDetails/config.properties")) {
-			if (input != null) {
-				prop.load(input);
-			} else {
-				throw new FileNotFoundException("config.properties not found in resources!");
-			}
+		try {
+			prop = new Properties();
+			FileInputStream fis = new FileInputStream(
+					System.getProperty("user.dir") + "/src/test/resources/configurationDetails/config.properties"
+			);
+			prop.load(fis);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Loading config from: " + System.getProperty("user.dir") + "/src/test/resources/configurationDetails/config.properties");
 	}
 	
 	public static void initialization() {
