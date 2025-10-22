@@ -51,7 +51,7 @@ public class TestBase {
 				//options.addArguments("--user-data-dir=/tmp/chrome-user-data-" + UUID.randomUUID());
 			}
 
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(options);
 		}
 		
 		if(browserName.equalsIgnoreCase("firefox")) {
