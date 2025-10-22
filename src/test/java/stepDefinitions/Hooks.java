@@ -71,7 +71,7 @@ public class Hooks extends TestBase {
 
     @AfterAll
     public static void afterAll() {
-        driver.quit(); // Quit only once after all scenarios
+        //driver.quit(); // Quit only once after all scenarios
         MailUtil.sendExtentReport();
     }
 }

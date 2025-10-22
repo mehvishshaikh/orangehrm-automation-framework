@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.UUID;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -46,7 +48,7 @@ public class TestBase {
 				options.addArguments("--disable-gpu");
 				options.addArguments("--disable-extensions");
 				options.addArguments("--window-size=1920,1080");
-				options.addArguments("--user-data-dir=/tmp/chrome-user-data-" + System.currentTimeMillis());
+				//options.addArguments("--user-data-dir=/tmp/chrome-user-data-" + UUID.randomUUID());
 			}
 
 			driver = new ChromeDriver();
