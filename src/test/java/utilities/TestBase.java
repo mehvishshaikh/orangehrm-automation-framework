@@ -1,7 +1,9 @@
 package utilities;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 import org.openqa.selenium.WebDriver;
@@ -14,12 +16,15 @@ public class TestBase {
 	public static Properties prop;
 	
 	public TestBase() {
-		try {
-			prop = new Properties();
-			FileInputStream fis = new FileInputStream("C:\\Users\\Mehvish\\Demo-workspace\\OrangeHRMDemoAutomation\\src\\test\\resources\\configurationDetails\\config.properties");
-			prop.load(fis);
-		}catch(IOException e) {
-			e.getMessage();
+		try (InputStream input = getClass().getClassLoader()
+				.getResourceAsStream("configurationDetails/config.properties")) {
+			if (input != null) {
+				prop.load(input);
+			} else {
+				throw new FileNotFoundException("config.properties not found in resources!");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
