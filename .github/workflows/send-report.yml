@@ -1,0 +1,31 @@
+name: Run Tests and Email Report
+
+on:
+  workflow_dispatch:  # manual trigger
+  schedule:
+    - cron: '*/2 * * * *'  # every 2 mins — disable later
+
+jobs:
+  test-and-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11' # Specify your desired Java version
+          distribution: 'adopt' # or 'temurin', 'zulu', etc.
+
+      - name: Run Tests
+        run: mvn clean test
+
+      - name: Send Email with Report
+        run: mvn exec:java -Dexec.mainClass="utilities.MailUtil"
+        env:
+          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
+          CC_EMAIL: ${{ secrets.CC_EMAIL }}
